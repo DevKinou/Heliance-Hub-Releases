@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heliance Hub</title>
+<meta name="description" content="L'application Windows de l'association Heliance : gérer le bot Discord et retrouver son espace membre.">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root { --fond:#090b17; --carte:#0d1024; --bord:#f5f7ff24; --texte:#f5f7ff; --discret:#9aa1bf; --accent:#54d8ff; --violet:#8b5cf6; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--fond); color:var(--texte); font:16px/1.6 Inter, "Segoe UI", system-ui, sans-serif; }
+  a { color:var(--accent); }
+  .page { max-width:1040px; margin:0 auto; padding:0 16px; }
+  header { padding:28px 0; display:flex; align-items:center; gap:14px; }
+  header img { width:44px; height:44px; }
+  header b { font:700 18px "Space Grotesk", sans-serif; letter-spacing:.5px; }
+  header nav { margin-left:auto; display:flex; gap:18px; font-size:14px; }
+  header nav a { color:var(--discret); text-decoration:none; }
+  header nav a:hover { color:var(--texte); }
+  .hero { padding:56px 0 40px; text-align:center; }
+  .hero h1 { font:700 clamp(36px, 6vw, 60px)/1.05 "Space Grotesk", sans-serif; margin:0 0 16px;
+             background:linear-gradient(90deg, var(--violet), var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .hero p { color:var(--discret); font-size:18px; max-width:640px; margin:0 auto 32px; }
+  .boutons { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .bouton { display:inline-flex; flex-direction:column; align-items:center; padding:14px 26px; border-radius:8px; text-decoration:none;
+            font:600 15px "Space Grotesk", sans-serif; letter-spacing:.6px; border:1px solid var(--bord); color:var(--texte); background:var(--carte); }
+  .bouton small { font:400 12px Inter, sans-serif; color:var(--discret); letter-spacing:0; margin-top:2px; }
+  .bouton.principal { background:var(--accent); color:var(--fond); border-color:var(--accent); }
+  .bouton.principal small { color:#0d1024b3; }
+  .bouton:hover { filter:brightness(1.08); }
+  .version { margin-top:16px; color:var(--discret); font-size:14px; }
+  h2 { font:700 26px "Space Grotesk", sans-serif; margin:56px 0 20px; }
+  .grille { display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:12px; }
+  .carte { background:var(--carte); border:1px solid var(--bord); border-radius:10px; padding:18px; }
+  .carte b { display:block; font:600 16px "Space Grotesk", sans-serif; margin-bottom:6px; }
+  .carte span { color:var(--discret); font-size:14px; }
+  .note { background:var(--carte); border:1px solid var(--bord); border-left:3px solid var(--accent); border-radius:8px; padding:14px 18px; color:var(--discret); font-size:14px; margin-top:12px; }
+  footer { margin:64px 0 32px; color:var(--discret); font-size:13px; text-align:center; }
+  @media (max-width:560px) { header nav { display:none; } .hero { padding-top:24px; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <img src="logo.png" alt="">
+    <b>HELIANCE HUB</b>
+    <nav>
+      <a href="#fonctions" data-t="navFeatures">Fonctions</a>
+      <a href="https://github.com/DevKinou/Heliance-Hub-Releases/releases" data-t="navReleases">Versions</a>
+      <a href="https://github.com/DevKinou/Heliance-Hub-Releases/issues" data-t="navHelp">Aide</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Heliance Hub</h1>
+    <p data-t="tagline">Gérez le bot Discord de l'association sur vos serveurs, et retrouvez votre espace de joueur ou de coach. Gratuit, sans pub.</p>
+    <div class="boutons">
+      <a class="bouton principal" id="setup" href="https://github.com/DevKinou/Heliance-Hub-Releases/releases/latest/download/HelianceHub-Setup.exe">
+        <span data-t="setup">TÉLÉCHARGER L'INSTALLATEUR</span><small data-t="setupHint">Recommandé · sans droits administrateur</small></a>
+      <a class="bouton" id="portable" href="https://github.com/DevKinou/Heliance-Hub-Releases/releases/latest/download/HelianceHub.exe">
+        <span data-t="portable">VERSION PORTABLE</span><small data-t="portableHint">Un seul fichier, sans installation</small></a>
+    </div>
+    <div class="version" id="version" data-t="versionLoading">Windows 10 et 11, 64 bits · mises à jour automatiques</div>
+  </section>
+
+  <h2 id="fonctions" data-t="features">Le bot et l'association, dans une seule appli</h2>
+  <div class="grille">
+    <div class="carte"><b data-t="f1t">Tableau de bord du bot</b><span data-t="f1">Activez les modules et réglez l'automod, les messages d'accueil et les rôles de chaque serveur, façon MEE6.</span></div>
+    <div class="carte"><b data-t="f2t">Messages et embeds</b><span data-t="f2">Écrivez les messages du bot avec un aperçu fidèle, lancez des sondages et des giveaways.</span></div>
+    <div class="carte"><b data-t="f3t">Vos serveurs</b><span data-t="f3">Connexion avec Discord : seuls les serveurs que vous gérez apparaissent, d'un clic d'un serveur à l'autre.</span></div>
+    <div class="carte"><b data-t="f4t">Espace membre</b><span data-t="f4">Agenda, disponibilités, objectifs et équipe pour les joueurs et les coachs (bientôt).</span></div>
+    <div class="carte"><b data-t="f5t">Mises à jour intégrées</b><span data-t="f5">Le Hub se met à jour tout seul, sans droits administrateur.</span></div>
+  </div>
+
+  <h2 data-t="installTitle">Installation</h2>
+  <div class="note" data-t="smartscreen">Au premier lancement, Windows peut afficher « Windows a protégé votre ordinateur » : l'appli n'est pas encore signée. Cliquez sur « Informations complémentaires », puis « Exécuter quand même ».</div>
+
+  <footer>
+    <span data-t="footer">Fait par Heliance. Une question, un bug ?</span>
+    <a href="https://github.com/DevKinou/Heliance-Hub-Releases/issues" data-t="report">Signaler un problème</a>
+  </footer>
+</div>
+<script>
+  // Anglais si le navigateur n'est pas en français.
+  const en = {
+    navFeatures: "Features", navReleases: "Releases", navHelp: "Help",
+    tagline: "Manage the association's Discord bot on your servers, and find your player or coach area. Free, no ads.",
+    setup: "DOWNLOAD THE INSTALLER", setupHint: "Recommended · no admin rights needed",
+    portable: "PORTABLE VERSION", portableHint: "A single file, no installation",
+    versionLoading: "Windows 10 and 11, 64-bit · automatic updates",
+    features: "The bot and the association, in one app",
+    f1t: "Bot dashboard", f1: "Turn modules on and set up the automod, welcome messages and roles for each server, MEE6-style.",
+    f2t: "Messages and embeds", f2: "Write the bot's messages with a faithful preview, start polls and giveaways.",
+    f3t: "Your servers", f3: "Sign in with Discord: only the servers you manage appear, one click from one to the next.",
+    f4t: "Member area", f4: "Schedule, availability, goals and team for players and coaches (coming soon).",
+    f5t: "Built-in updates", f5: "The Hub updates itself, without administrator rights.",
+    installTitle: "Installation",
+    smartscreen: "On first launch, Windows may show \"Windows protected your PC\": the app isn't signed yet. Click \"More info\", then \"Run anyway\".",
+    footer: "Made by Heliance. A question, a bug?", report: "Report a problem",
+  };
+  const english = !(navigator.language || "fr").toLowerCase().startsWith("fr");
+  if (english) {
+    document.documentElement.lang = "en";
+    document.querySelectorAll("[data-t]").forEach(e => { if (en[e.dataset.t]) e.textContent = en[e.dataset.t]; });
+  }
+  // Dernière version publiée, pour l'afficher sous les boutons.
+  fetch("https://api.github.com/repos/DevKinou/Heliance-Hub-Releases/releases/latest")
+    .then(r => r.ok ? r.json() : null)
+    .then(r => {
+      if (!r) return;
+      const v = r.tag_name.replace(/^v/, "");
+      const date = new Date(r.published_at).toLocaleDateString(english ? "en-GB" : "fr-FR", { day: "numeric", month: "long", year: "numeric" });
+      document.getElementById("version").textContent = english
+        ? `Version ${v} · ${date} · Windows 10 and 11, 64-bit`
+        : `Version ${v} du ${date} · Windows 10 et 11, 64 bits`;
+    })
+    .catch(() => {});
+</script>
+</body>
+</html>
